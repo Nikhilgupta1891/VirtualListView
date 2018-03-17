@@ -8,7 +8,6 @@ namespace VirtualModeListView
     public partial class Form1 : Form
     {
         private static int maxLines = 10;
-        private static int count = 0;
 
         System.Collections.Generic.List<ListViewItem> listOfAvailLVI = new List<ListViewItem>();
         ListViewItem newListViewItem = null;
@@ -18,12 +17,7 @@ namespace VirtualModeListView
         {
             InitializeComponent();
         }
-
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
+        
         // Populate Items
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -31,15 +25,17 @@ namespace VirtualModeListView
             listView.VirtualListSize = maxLines;
             toolStripStatusLabel2.Text = maxLines.ToString();
 
+            // Items on Form load. 
             for (int l = 0; l < maxLines; l++)
             {
-                newListViewItem = new ListViewItem();
-                newListViewItem.Name = "newListViewItem_Name" + l;
-                newListViewItem.Text = "newListViewItem_Text" + l;
-                newListViewItem.Tag = "newListViewItem_Tag" + l;
+                // First column
+                newListViewItem = new ListViewItem("FormLoadFirstCol" + l);
+                // newListViewItem.Name = "newListViewItem_Name" + l;
+                // newListViewItem.Text = "newListViewItem_Text" + l;   // This text will replace "newListViewItem" + l"
 
-                newListViewItem.SubItems.Add("wdcdwc" + l);
-                newListViewItem.SubItems[1].Text = "SubItems_text" + l;
+                // Second Column
+                newListViewItem.SubItems.Add("FormLoadSecondCol" + l);
+                // newListViewItem.SubItems[1].Text = "SubItems_text" + l;  // This text will replace "SubItems_text" + l
 
                 listOfAvailLVI.Add(newListViewItem);
             }
@@ -50,6 +46,43 @@ namespace VirtualModeListView
         {
             ListViewItem it = listOfAvailLVI[e.ItemIndex];
             e.Item = it;
+        }
+
+        // Add Item
+        // Each subitem will go to the second column. 
+        // Important NOTE: If there is an extra column, there has to be a subitem added to the ListViewItem created for the first column.
+        private void AddItems_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("maxLines: " + maxLines);
+            int count = maxLines;
+
+            // New Added items
+            for (int l = count; l < (count + 10); l++)
+            {
+                // First Column
+                newListViewItem = new ListViewItem("AddedItemFirstCol " + l);
+                // Second Column.
+                newListViewItem.SubItems.Add("AddedItemSecondCol" + l);
+
+                listOfAvailLVI.Add(newListViewItem);
+                maxLines = maxLines + 1;
+            }
+
+            // New Extra Item
+            // First Column
+            newListViewItem = new ListViewItem("ExtraItemFirstCol");
+            // Second Column
+            newListViewItem.SubItems.Add("ExtraItemSecondCol");
+
+            listOfAvailLVI.Add(newListViewItem);
+            maxLines = maxLines + 1;
+
+            listOfAvailLVI.Sort(delegate (ListViewItem x, ListViewItem y)
+            {
+                return (x.Text).CompareTo(y.Text);
+            });
+
+            listView.VirtualListSize = maxLines;
         }
 
         private void Move_Click(object sender, EventArgs e)
@@ -90,53 +123,7 @@ namespace VirtualModeListView
             }
             listView.VirtualListSize = maxLines;
         }
-
-        // Add Item
-        private void AddItems_Click(object sender, EventArgs e)
-        {
-            Console.WriteLine("maxLines: " + maxLines);
-            int count = maxLines;
-
-            // Empty Subitems
-            for (int l = count; l < (count + 10); l++)
-            {
-                newListViewItem = new ListViewItem("OrgName " + l + "FZZ");
-                newListViewItem.Name = "OrgKey" + l;
-
-                String ConfidLevelDesc = "";
-                String OrganizationName = "OrgName";
-                
-               // if (!String.IsNullOrEmpty(ConfidLevelDesc))
-                {
-                    newListViewItem.SubItems.Add(ConfidLevelDesc);
-                    newListViewItem.SubItems.Add(OrganizationName);
-
-                    newListViewItem.SubItems[1].Text = ConfidLevelDesc;
-                    newListViewItem.SubItems[2].Text = OrganizationName;
-                }
-
-                listOfAvailLVI.Add(newListViewItem);
-                maxLines = maxLines + 1;
-            }
-
-            // With Subitem
-            newListViewItem = new ListViewItem();
-            newListViewItem.Name = "newListViewItem_Name";
-            newListViewItem.Text = "testListViewItem_Text";
-            newListViewItem.SubItems.Add("123");
-            newListViewItem.SubItems[1].Text = "123";
-
-            listOfAvailLVI.Add(newListViewItem);
-            maxLines = maxLines + 1;
-
-            listOfAvailLVI.Sort(delegate (ListViewItem x, ListViewItem y)
-            {
-                return (x.Text).CompareTo(y.Text);
-            });
-
-            listView.VirtualListSize = maxLines;
-        }
-
+        
         private void SelectAll_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < listView.VirtualListSize; i++)
@@ -150,6 +137,11 @@ namespace VirtualModeListView
             {
                 Console.WriteLine(listView.Items[Convert.ToInt32(eachItemInCollection)].Text);
             }
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

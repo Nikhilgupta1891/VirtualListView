@@ -14,3 +14,10 @@ C:\Users\NG043556\Desktop\Virtual ListView\VirtualListView\VirtualModeListView\b
 C:\Users\NG043556\Desktop\Virtual ListView\VirtualListView\VirtualModeListView\obj\Debug\VirtualModeListView.csprojResolveAssemblyReference.cache
 C:\Users\NG043556\Desktop\Virtual ListView\VirtualListView\VirtualModeListView\obj\Debug\VirtualModeListView.Form1.resources
 C:\Users\NG043556\Desktop\Virtual ListView\VirtualListView\VirtualModeListView\obj\Debug\VirtualModeListView.csproj.GenerateResource.Cache
+C:\Users\NG043556\Desktop\VirtualListView\VirtualModeListView\obj\Debug\VirtualModeListView.exe
+C:\Users\NG043556\Desktop\VirtualListView\VirtualModeListView\obj\Debug\VirtualModeListView.pdb
+C:\Users\NG043556\Desktop\VirtualListView\VirtualModeListView\bin\Debug\VirtualModeListView.exe
+C:\Users\NG043556\Desktop\VirtualListView\VirtualModeListView\bin\Debug\VirtualModeListView.pdb
+C:\Users\NG043556\Desktop\VirtualListView\VirtualModeListView\obj\Debug\VirtualModeListView.csprojResolveAssemblyReference.cache
+C:\Users\NG043556\Desktop\VirtualListView\VirtualModeListView\obj\Debug\VirtualModeListView.Form1.resources
+C:\Users\NG043556\Desktop\VirtualListView\VirtualModeListView\obj\Debug\VirtualModeListView.csproj.GenerateResource.Cache
